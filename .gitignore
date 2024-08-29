@@ -398,3 +398,13 @@ Temporary Items
 dist
 .webpack
 .serverless/**/*.zip
+# Ignore all files in the Docker MySQL data directory
+db/mysql_data/
+
+# Ignore Docker socket files
+*.sock
+
+# Add any other necessary patterns here
+*.log
+*.env
+

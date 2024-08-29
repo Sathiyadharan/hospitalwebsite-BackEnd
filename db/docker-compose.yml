@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123  # Set your desired root password here
+      MYSQL_DATABASE: xdb  # Set your desired database name here
+      MYSQL_USER: admin  # Set your desired username here
+      MYSQL_PASSWORD: admin123  # Set your desired user password here
+    ports:
+      - "3001:3306"  # Map host port to container port
+    volumes:
+      - ./mysql_data:/var/lib/mysql  # Mount host directory to container directory
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: mysql-db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root@123
+    ports:
+      - "3002:80"
+    depends_on:
+      - mysql-db
